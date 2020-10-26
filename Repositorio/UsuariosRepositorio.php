@@ -3,7 +3,7 @@ class UsuarioRepositorio
 {
     function Cadastrar(Usuario $usuario)
     {
-        $conexao = new PDO("sqlsrv:Database=dbphp7;server=mcastro\mcastro;ConnectionPooling=0","sa","mcastro");
+        $conexao = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0","sa","root");
             $query = $conexao->prepare("INSERT INTO Usuarios 
                 (Login, Senha, Nome, Sobrenome, DataNascimento, Escolaridade, Profissao) 
                     VALUES ('$usuario->Login', '$usuario->Senha', '$usuario->Nome', '$usuario->Sobrenome',
@@ -21,7 +21,7 @@ class UsuarioRepositorio
 
     function VerificarCredenciais($login, $senha)
     {
-        $conexao = new PDO("sqlsrv:Database=dbphp7;server=mcastro\mcastro;ConnectionPooling=0","sa","mcastro");
+        $conexao = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0","sa","root");
             $result = $conexao->query("SELECT Login, Senha FROM Usuarios where Login = '$login';");
             $result->execute();
                 $row = $result->fetch(PDO::FETCH_ASSOC);  
@@ -49,7 +49,7 @@ class UsuarioRepositorio
 
     function BuscaDadosDoUsuarioLogado($login, $senha)
     {
-        $conexao = new PDO("sqlsrv:Database=dbphp7;server=mcastro\mcastro;ConnectionPooling=0","sa","mcastro");
+        $conexao = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0","sa","root");
 
             $result = $conexao->query("SELECT * FROM Usuarios where Login = '$login';");
                 $row = $result->fetch(PDO::FETCH_ASSOC); 
